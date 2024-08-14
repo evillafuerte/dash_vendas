@@ -16,8 +16,7 @@ df["mes_ano"]= df["Data Venda"].dt.to_period("M").astype(str)
 
 #Agrupamentos
 produtos_vendidos_marca = df.groupby("Marca")["Quantidade"].sum().sort_values(ascending=True).reset_index()
-lucro_categoria = df.groupby("Categoria")["Lucro"].sum().reset_index()  
-lucro_mes_categoria = df.groupby(["mes_ano", "Categoria"])["Lucro"].sum().reset_index()                                                                     
+lucro_categoria = df.groupby("Categoria")["Lucro"].sum().reset_index()                                                                       
 
 
 def main():
@@ -60,9 +59,7 @@ def main():
                width=350, height=350)
     col2.plotly_chart(fig1)
     
-    fig2 = px.line(lucro_mes_categoria, x="mes_ano", y="Lucro",
-                   title="Lucro", color="Categoria", width=600, height=500)
-    st.plotly_chart(fig2)
+    
 
 if __name__=="__main__":
     main()
